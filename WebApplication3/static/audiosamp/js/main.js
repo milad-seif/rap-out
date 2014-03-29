@@ -52,9 +52,11 @@ function doneEncoding( blob ) {
     Recorder.setupDownload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
     recIndex++;
 	
-	var fd = new FormData();
-	fd.append('fname', 'voicerecording.wav');
-	fd.append('data', blob);
+
+	var fd = {
+		'fname' : 'voicerecording.wav';
+		'data' : blob;
+	}	
 	$.ajax({
 		type: 'POST',
 		url: "http://rap-out.azurewebsites.net/api/rapout",
