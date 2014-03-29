@@ -57,7 +57,7 @@ function doneEncoding( blob ) {
 	fd.append('data', blob);
 	$.ajax({
 		type: 'POST',
-		url: "http://rap-out.azurewebsites.net/api/rapout/?Post",
+		url: "http://rap-out.azurewebsites.net/api/rapout",
 		data: fd,
 		processData: false,
 		contentType: false
@@ -65,11 +65,6 @@ function doneEncoding( blob ) {
 		   console.log(data);
 	});
 
-	$.post("http://rap-out.azurewebsites.net/api/rapout/?Post",
-	  blob,
-	  function(data,status){
-		alert("Data: " + data + "\nStatus: " + status);
-	  });	
 }
 
 function toggleRecording( e ) {
