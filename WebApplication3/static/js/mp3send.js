@@ -24,10 +24,10 @@ function recButton(){
 		//figure out 
 		widget.seekTo(0);
 		widget.play();
+		
+		var progressMade = false;
 		//we then wait for the PLAY_PROGRESS event, knowing that the song is loaded before
-		widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(player, data) {
-			alert("Playing! " + data);            
-		});
+		widget.bind(SC.Widget.Events.PLAY_PROGRESS, onMusicStart);
 	
 	}
 	else{
@@ -39,5 +39,10 @@ function recButton(){
 	
 	
 	}
+}
+
+var onMusicStart = function(player,data){
+	widget.unbind(SC.Widget.Events.PLAY_PROGRESS);
+
 }
 
