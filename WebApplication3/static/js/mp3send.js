@@ -30,4 +30,4 @@
  
         $.getJSON("http://api.soundcloud.com/resolve.json", params).success(onSuccess);
     }
-})(window.open("https://soundcloud.com/newjawn/mercy-instrumental-kanye-west"));
+})(window);
