@@ -26,16 +26,19 @@
 	
 	<script type="text/javascript"
         src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-
+	<script type="text/javascript"
+        src="js/mp3send.js"></script>
+	<script type="text/javascript"
+        src="js/soundcloudapi.js"></script>
   </head>
 
-  <body>
+  <body onload="generateTrackNum();setUpWidget()">
     <h1 id = "maintitle">RAP OUT</h1>
 	<div class="jumbotron">
       <div class="container">
         <h1>Select a beat and hit record!</h1>
-        <p>Rap Out lets you choose from millions of soundcloud sounds to rap over. Record your freestyle and get your rap with music instantly. Diss your friends and challenge them to respond with something even better.</p>
-        <p><a class="btn btn-primary btn-lg" role="button" onclick="">Record &raquo;</a></p>
+        <p id = "description">Rap Out lets you choose from millions of soundcloud sounds to rap over. Record your freestyle and get your rap with music instantly. Diss your friends and challenge them to respond with something even better.</p>
+        <p><a class="btn btn-primary btn-lg" id="recordbutton" role="button" onclick="recButton()">Record &raquo;</a></p>
 		<iframe width="60%" height="200" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/18189757&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false"></iframe>
 		
       </div>

@@ -1,33 +1,44 @@
-(function(window) {
-    var i, $sound, $buttonGroup;
- 
-    var $sounds = $(".sound");
-    var clientId = require("config").get("client_id");
-    var oauthToken = require("lib/connect").getAuthToken();
-    var conversionHelper = require("lib/helpers/conversion-helper");
-    var $downloadButton, size;
-    var params, downloadUrl, onSuccess;
- 
-    for (i = $sounds.length - 1; i >= 0; i--) {
-        $sound = $($sounds[i]);
- 
-        var soundcloudUrl = "https://soundcloud.com" + ($sound.find(".soundTitle__title").attr("href") || window.location.pathname);
- 
-        params = {
-            url: soundcloudUrl,
-            client_id: clientId
-        };
- 
-        onSuccess = (function($sound) {
-            return function(data) {
-                var params = {
-                  client_id: clientId
-                };
-                downloadUrl = require("lib/url").stringify({ query: params }, data.stream_url + ".mp3");
-				
-            };
-        })($sound);
- 
-        $.getJSON("http://api.soundcloud.com/resolve.json", params).success(onSuccess);
-    }
-})(window);
+var trackNum = 1;
+var startedRec = false;
+var widget;
+
+function generateTrackNum(){
+	var test = Math.floor((Math.random()*8)+1);
+	
+	while( test  == trackNum)
+		test = Math.floor((Math.random()*8)+1);
+		
+	trackNum = test;	
+		
+}
+
+function setUpWidget(){
+	var iframeElement   = document.querySelector('iframe');
+	widget  = SC.Widget(iframeElement);
+}
+
+function recButton(){
+	if(!startedRec){
+		startedRec = true;
+		document.getElementById("recordbutton").innerHTML = "Recording...";
+		
+		widget.seekTo(0);
+		widget.play();
+		//we then wait for the PLAY_PROGRESS event, knowing that the song is loaded before
+		
+	
+	}
+	else{
+	document.getElementById("recordbutton").innerHTML = "Done Recording!";
+		//stop recording
+		
+		//send trackNum using GET
+		//send recording using post
+	
+	
+	}
+}
+
+widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(player, data) {
+        alert("Playing! " + data);            
+});
